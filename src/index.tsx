@@ -1,12 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import postsReducer from './_store/reducers/posts.reducer';
+import {combineEpics, createEpicMiddleware} from 'redux-observable';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import {Provider} from 'react-redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import commentsReducer from "./_store/reducers/comments.reducer";
+import {commentsEffect} from "./_store/effects/comments.effects";
+import {postsEffect} from "./_store/effects/posts.effects";
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const observableMiddleware = createEpicMiddleware();
+
+const reducers = combineReducers({
+    postsReducer,
+    commentsReducer
+});
+
+const store = createStore(reducers, applyMiddleware(observableMiddleware));
+
+observableMiddleware.run(combineEpics(
+    commentsEffect,
+    postsEffect
+));
+
+ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
+

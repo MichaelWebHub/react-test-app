@@ -1,0 +1,17 @@
+@import "../../_utils/index";
+
+.post {
+  padding: 1rem;
+  border-bottom: 1px solid $borderColor;
+}
+
+.post__title {
+  color: $crimson;
+  font-weight: 600;
+}
+
+.post__body {
+  color: $background;
+  margin-top: 1rem;
+  line-height: 1.4;
+}
