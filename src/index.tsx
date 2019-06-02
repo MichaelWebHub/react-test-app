@@ -17,9 +17,7 @@ import {of} from 'rxjs';
 /** Interceptors */
 
 Axios.interceptors.request.use((config: AxiosRequestConfig) => {
-    console.log(process.env);
-    debugger
-    if (process.env.REACT_APP_IS_PROD && config.url === 'https://jsonplaceholder.typicode.com/comments') {
+    if (process.env.REACT_APP_ENV === 'prod' && config.url === 'https://jsonplaceholder.typicode.com/comments') {
         config.url += '?postId=1';
     }
 
