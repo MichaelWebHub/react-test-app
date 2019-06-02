@@ -10,6 +10,25 @@ import commentsReducer from "./_store/reducers/comments.reducer";
 import {commentsEffect} from "./_store/effects/comments.effects";
 import {postsEffect} from "./_store/effects/posts.effects";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import Axios from "axios-observable";
+import {AxiosRequestConfig} from "axios";
+import {of} from 'rxjs';
+
+/** Interceptors */
+
+Axios.interceptors.request.use((config: AxiosRequestConfig) => {
+    console.log(process.env);
+    debugger
+    if (process.env.REACT_APP_IS_PROD && config.url === 'https://jsonplaceholder.typicode.com/comments') {
+        config.url += '?postId=1';
+    }
+
+    return config;
+}, (error) => {
+    return of(new Error(error));
+});
+
+/** Redux */
 
 const observableMiddleware = createEpicMiddleware();
 

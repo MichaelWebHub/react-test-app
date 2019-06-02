@@ -26,8 +26,9 @@
     "typescript": "3.5.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start --env.ENVIRONMENT=development",
+    "build:dev": "react-scripts build --env.ENVIRONMENT=development",
+    "build:prod": "react-scripts build --env.ENVIRONMENT=production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }

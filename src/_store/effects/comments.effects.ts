@@ -5,7 +5,7 @@ import {filter, map, switchMap} from 'rxjs/operators';
 
 export const commentsEffect = (action$: ActionsObservable<any>) => action$.pipe(
     filter((action: { type: string }) => action.type === GetComments.Pending),
-    switchMap(() => Axios.get(`https://jsonplaceholder.typicode.com/comments?postId=1`)
+    switchMap(() => Axios.get(`https://jsonplaceholder.typicode.com/comments`)
         .pipe(
             map((data: any) => GetCommentsSuccess(data.data))
         )
