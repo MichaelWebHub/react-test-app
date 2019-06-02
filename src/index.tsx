@@ -9,6 +9,7 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import commentsReducer from "./_store/reducers/comments.reducer";
 import {commentsEffect} from "./_store/effects/comments.effects";
 import {postsEffect} from "./_store/effects/posts.effects";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const observableMiddleware = createEpicMiddleware();
 
@@ -17,7 +18,7 @@ const reducers = combineReducers({
     commentsReducer
 });
 
-const store = createStore(reducers, applyMiddleware(observableMiddleware));
+const store = createStore(reducers, composeWithDevTools(applyMiddleware(observableMiddleware)));
 
 observableMiddleware.run(combineEpics(
     commentsEffect,
