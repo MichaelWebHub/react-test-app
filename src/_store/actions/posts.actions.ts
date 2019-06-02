@@ -1,14 +1,12 @@
 import {IPost} from "../reducers/posts.reducer";
+import {createActions} from 'redux-actions';
 
-export const GetPostsPending = () => {
-    return {
-        type: '[Pending] Get all-posts'
-    }
-};
+export enum GetPosts {
+    Pending = '[Pending] Get all-posts',
+    Success = '[Success] Get all-posts'
+}
 
-export const GetPostsSuccess = (posts?: IPost[]) => {
-    return {
-        type: '[Success] Get all-posts',
-        posts
-    };
-};
+createActions({
+    [GetPosts.Pending]: undefined,
+    [GetPosts.Success]: (posts?: IPost[]) => posts
+});

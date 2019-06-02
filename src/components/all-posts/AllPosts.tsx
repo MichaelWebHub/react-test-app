@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Dispatch} from "redux";
 import {connect} from "react-redux";
 import {IPost, IPostsState} from "../../_store/reducers/posts.reducer";
-import {GetPostsPending} from "../../_store/actions/posts.actions";
+import {GetPosts} from "../../_store/actions/posts.actions";
 import Post from "../post/Post";
 
 type IPostProps = {
@@ -35,9 +34,9 @@ const mapStateToProps = (state: { postsReducer: IPostsState }) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
+const mapDispatchToProps = (dispatch: any) => {
     return {
-        getPostsPending: () => dispatch(GetPostsPending())
+        getPostsPending: () => dispatch({type: GetPosts.Pending})
     };
 };
 

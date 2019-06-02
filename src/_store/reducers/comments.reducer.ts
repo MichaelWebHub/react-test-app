@@ -1,4 +1,4 @@
-import {GetCommentsSuccess} from "../actions/comments.actions";
+import {GetComments} from "../actions/comments.actions";
 
 export interface IComment {
     postId: number,
@@ -20,7 +20,7 @@ const commentsReducer = (state: ICommentsState = initialState, action: any) => {
     const newState = {...state};
 
     switch (action.type) {
-        case GetCommentsSuccess().type:
+        case GetComments.Success:
             newState.comments = action.comments;
             break;
     }

@@ -1,4 +1,5 @@
-import {GetPostsSuccess} from "../actions/posts.actions";
+import {GetPosts} from "../actions/posts.actions";
+import {handleActions} from 'redux-actions';
 
 export interface IPost {
     userId: number,
@@ -15,15 +16,13 @@ const initialState: IPostsState = {
     posts: []
 };
 
-const postsReducer = (state: IPostsState = initialState, action: any) => {
-    const newState = {...state};
-
-    switch (action.type) {
-        case GetPostsSuccess().type:
-            newState.posts = action.posts;
-            break;
-    }
-    return newState;
-};
+const postsReducer = handleActions(
+    {
+        [GetPosts.Success]: (state: IPostsState, action: any) => ({
+            posts: action.posts
+        })
+    },
+    initialState
+);
 
 export default postsReducer;
