@@ -1,5 +1,5 @@
 import {GetPosts} from "../actions/posts.actions";
-import {handleActions} from 'redux-actions';
+import {Action, handleActions} from 'redux-actions';
 
 export interface IPost {
     userId: number,
@@ -12,14 +12,14 @@ export interface IPostsState {
     posts: IPost[]
 }
 
-const initialState: IPostsState = {
+export const initialState: IPostsState = {
     posts: []
 };
 
 const postsReducer = handleActions(
     {
-        [GetPosts.Success]: (state: IPostsState, action: any) => ({
-            posts: action.posts
+        [GetPosts.Success]: (state: IPostsState, action: Action<IPost[]>) => ({
+            posts: action.payload
         })
     },
     initialState

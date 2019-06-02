@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {IPost, IPostsState} from "../../_store/reducers/posts.reducer";
 import {GetPosts} from "../../_store/actions/posts.actions";
 import Post from "../post/Post";
+import {Dispatch} from "redux";
 
 type IPostProps = {
     posts: IPost[];
@@ -34,7 +35,7 @@ const mapStateToProps = (state: { postsReducer: IPostsState }) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
     return {
         getPostsPending: () => dispatch({type: GetPosts.Pending})
     };
