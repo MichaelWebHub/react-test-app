@@ -4,13 +4,9 @@ import './Navbar.scss'
 
 const Navbar: React.FC = () => {
     return (
-        <nav className="nav-wrapper red darken-3">
-            <div className="container">
-                <ul className="nav">
-                    <li><Link className="nav__link" to="/posts">Posts</Link></li>
-                    <li><Link className="nav__link" to='/comments'>Comments</Link></li>
-                </ul>
-            </div>
+        <nav className="nav">
+            <Link className="nav__link" to="/posts">Posts</Link>
+            <Link className="nav__link" to='/comments'>Comments</Link>
         </nav>
     )
 };
